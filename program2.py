@@ -10,5 +10,6 @@ class Solution:
       else:
         ans += roman[a]
 
+    # return ans + roman[s[-1]]
     return ans + roman[s[-1]]
 

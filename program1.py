@@ -12,6 +12,7 @@ class Solution:
       elif not stack or stack.pop() != c:
         return False
 
+    # return not stack
     return not stack
 
 
