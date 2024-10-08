@@ -1,32 +1,24 @@
-class Solution(object):
-    def romanToInt(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        sList = list(s)
-        sLen = len(s)
-        nums = []
-        for i in range(sLen):
-            if sList[i] == 'I':
-                nums.append(1)
-            elif sList[i] == 'V':
-                nums.append(5)
-            elif sList[i] == 'X':
-                nums.append(10)
-            elif sList[i] == 'L':
-                nums.append(50)
-            elif sList[i] == 'C':
-                nums.append(100)
-            elif sList[i] == 'D':
-                nums.append(500)
-            elif sList[i] == 'M':
-                nums.append(1000)
-        sums = 0
-        for i in range(sLen-1):
-            if nums[i] >= nums[i+1]:
-                sums += nums[i]
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_numbers = {
+            'M':1000,
+            'D':500,
+            'C':100,
+            'L':50,
+            'X':10,
+            'V':5,
+            'I':1,
+            }
+        int_s = 0
+        prev_number = 0
+
+        for i in reversed(s):
+            if roman_numbers[i] < prev_number:
+                int_s -= roman_numbers[i]
+           
             else:
-                sums -= nums[i]
-        sums += nums[-1]
-        return sums
+                int_s += roman_numbers[i]
+            
+            prev_number = roman_numbers[i]
+
+        return int_s
